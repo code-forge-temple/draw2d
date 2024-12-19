@@ -1,4 +1,4 @@
-import draw2d from '../../packages'
+import draw2d from "../../packages";
 
 /**
  * @class
@@ -66,7 +66,9 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
       let node = null;
       json.forEach((element) => {
         try {
-          let o = this.createFigureFromElement(element) || this.createFigureFromType(element.type);
+          let o =
+            this.createFigureFromElement(element) ||
+            this.createFigureFromType(element.type);
           let source = null;
           let target = null;
           for (let i in element) {
@@ -78,7 +80,15 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
               }
               source = node.getPort(val.port);
               if (source === null) {
-                throw "Unable to find source port '" + val.port + "' at figure '" + val.node + "' to unmarschal '" + element.type + "'";
+                throw (
+                  "Unable to find source port '" +
+                  val.port +
+                  "' at figure '" +
+                  val.node +
+                  "' to unmarschal '" +
+                  element.type +
+                  "'"
+                );
               }
             } else if (i === "target") {
               node = canvas.getFigure(val.node);
@@ -87,7 +97,15 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
               }
               target = node.getPort(val.port);
               if (target === null) {
-                throw "Unable to find target port '" + val.port + "' at figure '" + val.node + "' to unmarschal '" + element.type + "'";
+                throw (
+                  "Unable to find target port '" +
+                  val.port +
+                  "' at figure '" +
+                  val.node +
+                  "' to unmarschal '" +
+                  element.type +
+                  "'"
+                );
               }
             }
           }
@@ -95,22 +113,31 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
             // don't change the order or the source/target set.
             // TARGET must always be the second one because some applications needs the "source"
             // port in the "connect" event of the target.
-            o.setSource(source)
-            o.setTarget(target)
+            o.setSource(source);
+            o.setTarget(target);
           }
-          o.setPersistentAttributes(element)
-          canvas.add(o)
-          result.add(o)
+          o.setPersistentAttributes(element);
+          canvas.add(o);
+          result.add(o);
         } catch (exc) {
-          debug.error(element, "Unable to instantiate figure type '" + element.type + "' with id '" + element.id + "' during unmarshal by " + this.NAME + ". Skipping figure..");
-          debug.error(exc)
-          debug.warn(element)
+          debug.error(
+            element,
+            "Unable to instantiate figure type '" +
+              element.type +
+              "' with id '" +
+              element.id +
+              "' during unmarshal by " +
+              this.NAME +
+              ". Skipping figure.."
+          );
+          debug.error(exc);
+          debug.warn(element);
         }
       });
 
       // restore group assignment
       //
-      json.forEach(element => {
+      json.forEach((element) => {
         if (typeof element.composite !== "undefined") {
           let figure = canvas.getFigure(element.id);
           if (figure === null) {
@@ -134,7 +161,9 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
 
       return result;
     },
-
+    getNestedProperty: function (obj, path) {
+      return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+    },
     /**
      *
      * Factory method to create an instance of the given element type.
@@ -143,7 +172,13 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
      * @returns {draw2d.Figure}
      */
     createFigureFromType: function (type) {
-      return Function(`return new ${type}()`)()
+      const customElement = this.getNestedProperty(window, type);
+
+      if (customElement !== undefined) {
+        return new customElement();
+      } else {
+        throw new Error(`Custom element ${type} is not defined in window`);
+      }
     },
 
     /**
@@ -155,5 +190,6 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend(
      */
     createFigureFromElement: function createFigureFromElement(element) {
       return null;
-    }
-  });
+    },
+  }
+);
