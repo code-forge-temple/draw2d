@@ -1278,8 +1278,8 @@ draw2d.Figure = Class.extend(
       // Adjust the new location if the object can snap to a helper
       // like grid, geometry, ruler,...
       //
-      if (this.getCanSnapToHelper()) {
-        newPos = this.getCanvas().snapToHelper(this, newPos)
+      if (this.canvas != null && this.getCanSnapToHelper()) {
+        newPos = this.canvas.snapToHelper(this, newPos)
       }
 
 
@@ -1351,7 +1351,7 @@ draw2d.Figure = Class.extend(
       // Element ist zwar schon an seine Position, das Command muss aber trotzdem
       // in dem CommandStack gelegt werden damit das Undo funktioniert.
       //
-      if (this.command !== null) {
+      if (this.command !== null && this.canvas !== null) {
         this.command.setPosition(this.x, this.y)
         this.canvas.getCommandStack().execute(this.command)
         this.command = null

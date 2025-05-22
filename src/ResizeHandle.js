@@ -389,13 +389,13 @@ draw2d.ResizeHandle = draw2d.shape.basic.Rectangle.extend(
     // An non draggable resizeHandle doesn't create a move/resize command.
     // This happens if the selected figure has set the "nonResizeable" flag.
     //
-    if (this.commandMove !== null) {
+    if (this.canvas != null && this.commandMove !== null) {
       this.commandMove.setPosition(this.owner.getX(), this.owner.getY())
       this.canvas.getCommandStack().execute(this.commandMove)
       this.commandMove = null
     }
 
-    if (this.commandResize !== null) {
+    if (this.canvas != null && this.commandResize !== null) {
       this.commandResize.setDimension(this.owner.getWidth(), this.owner.getHeight())
       this.canvas.getCommandStack().execute(this.commandResize)
       this.commandResize = null
