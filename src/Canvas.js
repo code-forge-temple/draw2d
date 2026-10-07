@@ -15,6 +15,12 @@ draw2d.Canvas = Class.extend(
     NAME: "draw2d.Canvas",
 
     /**
+     * How far (in screen pixels, along either axis) the mouse may move between press and release
+     * and still count as a click. Only beyond it does a press turn into a drag.
+     */
+    DRAG_THRESHOLD: 4,
+
+    /**
      * Create a new canvas with the given HTML DOM references.
      *
      * @param {String} canvasId the id of the DOM element to use a parent container
@@ -166,6 +172,7 @@ draw2d.Canvas = Class.extend(
       this.mouseDownY = 0
       this.mouseDragDiffX = 0
       this.mouseDragDiffY = 0
+      this.mouseDragStarted = false
 
       this.html.bind("mouseup touchend", function (event) {
         if (_this.mouseDown === false) {
@@ -224,13 +231,22 @@ draw2d.Canvas = Class.extend(
             hoverFigure: _this.currentHoverFigure
           })
         } else {
-          let diffXAbs = (event.clientX - _this.mouseDownX) * _this.zoomFactor
-          let diffYAbs = (event.clientY - _this.mouseDownY) * _this.zoomFactor
-          _this.editPolicy.each(function (i, policy) {
-            policy.onMouseDrag(_this, diffXAbs, diffYAbs, diffXAbs - _this.mouseDragDiffX, diffYAbs - _this.mouseDragDiffY, event.shiftKey, event.ctrlKey)
-          })
-          _this.mouseDragDiffX = diffXAbs
-          _this.mouseDragDiffY = diffYAbs
+          // Don't turn a click into a drag over the slightest twitch of the mouse: that moved the
+          // clicked figure by a pixel and kept the selection on a click into the blank canvas.
+          //
+          if (!_this.mouseDragStarted &&
+            (Math.abs(event.clientX - _this.mouseDownX) > _this.DRAG_THRESHOLD || Math.abs(event.clientY - _this.mouseDownY) > _this.DRAG_THRESHOLD)) {
+            _this.mouseDragStarted = true
+          }
+          if (_this.mouseDragStarted) {
+            let diffXAbs = (event.clientX - _this.mouseDownX) * _this.zoomFactor
+            let diffYAbs = (event.clientY - _this.mouseDownY) * _this.zoomFactor
+            _this.editPolicy.each(function (i, policy) {
+              policy.onMouseDrag(_this, diffXAbs, diffYAbs, diffXAbs - _this.mouseDragDiffX, diffYAbs - _this.mouseDragDiffY, event.shiftKey, event.ctrlKey)
+            })
+            _this.mouseDragDiffX = diffXAbs
+            _this.mouseDragDiffY = diffYAbs
+          }
           _this.fireEvent("mousemove", {
             x: pos.x,
             y: pos.y,
@@ -254,6 +270,7 @@ draw2d.Canvas = Class.extend(
                 _this.mouseDownY = event.clientY
                 _this.mouseDragDiffX = 0
                 _this.mouseDragDiffY = 0
+                _this.mouseDragStarted = false
                 pos = _this.fromDocumentToCanvasCoordinate(event.clientX, event.clientY)
                 _this.mouseDown = true
                 _this.editPolicy.each(function (i, policy) {
