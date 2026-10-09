@@ -9,9 +9,9 @@ import draw2d from '../../packages'
  * @author  Andreas Herz
  * @extends draw2d.policy.line.LineSelectionFeedbackPolicy
  */
-// do not delete them
-import plugin from "lib/jquery.contextmenu"
-import css from 'css/contextmenu.css'
+// The segment menu below needs $.contextMenu, which the host page provides: jquery-contextmenu
+// (a peer dependency) and its styles. Bundling our own copy here (1.6.5) used to override the
+// host's newer version for the whole page.
 
 draw2d.policy.line.OrthogonalSelectionFeedbackPolicy = draw2d.policy.line.LineSelectionFeedbackPolicy.extend(
   /** @lends draw2d.policy.line.OrthogonalSelectionFeedbackPolicy.prototype */

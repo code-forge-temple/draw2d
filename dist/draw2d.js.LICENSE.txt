@@ -10,22 +10,6 @@
  * http://paulirish.com/
  */
 
-/*!
- * jQuery contextMenu - Plugin for simple contextMenu handling
- *
- * Version: 1.6.5
- *
- * Authors: Rodney Rehm, Addy Osmani (patches for FF)
- * Web: http://medialize.github.com/jQuery-contextMenu/
- *
- * Licensed under
- *   MIT License http://www.opensource.org/licenses/mit-license
- *   GPL v3 http://opensource.org/licenses/GPL-3.0
- *
- */
-
-/*! !!../../node_modules/css-loader/dist/cjs.js!./contextmenu.css */
-
 /*! !!./node_modules/raw-loader/index.js!./src/lib/Class.exec.js */
 
 /*! !!./node_modules/raw-loader/index.js!./src/lib/pathfinding.exec.js */
@@ -33,18 +17,6 @@
 /*! !!./node_modules/raw-loader/index.js!./src/lib/raphael.exec.js */
 
 /*! !!./node_modules/script-loader/addScript.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */
-
-/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */
 
 /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -60,10 +32,6 @@
     OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
-
-/*! ../../node_modules/css-loader/dist/runtime/api.js */
-
-/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */
 
 /*! ../../packages */
 
@@ -961,13 +929,9 @@
 
 /*! canvg */
 
-/*! css/contextmenu.css */
-
 /*! lib/Class.exec.js */
 
 /*! lib/jquery.autoresize */
-
-/*! lib/jquery.contextmenu */
 
 /*! lib/pathfinding.exec.js */
 
@@ -1404,10 +1368,6 @@
 /*!********************************!*\
   !*** ./src/shape/state/End.js ***!
   \********************************/
-
-/*!*********************************!*\
-  !*** ./src/css/contextmenu.css ***!
-  \*********************************/
 
 /*!*********************************!*\
   !*** ./src/lib/raphael.exec.js ***!
@@ -2202,10 +2162,6 @@
   \***************************************/
 
 /*!***************************************!*\
-  !*** ./src/lib/jquery.contextmenu.js ***!
-  \***************************************/
-
-/*!***************************************!*\
   !*** ./src/shape/icon/ArrowRight2.js ***!
   \***************************************/
 
@@ -2594,10 +2550,6 @@
   \****************************************************/
 
 /*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-
-/*!*****************************************************!*\
   !*** ./src/decoration/connection/ArrowDecorator.js ***!
   \*****************************************************/
 
@@ -2782,10 +2734,6 @@
   \***********************************************************/
 
 /*!************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
-  \************************************************************/
-
-/*!************************************************************!*\
   !*** ./node_modules/stackblur-canvas/dist/stackblur-es.js ***!
   \************************************************************/
 
@@ -2818,10 +2766,6 @@
   \**************************************************************/
 
 /*!***************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
-  \***************************************************************/
-
-/*!***************************************************************!*\
   !*** ./src/policy/figure/RectangleSelectionFeedbackPolicy.js ***!
   \***************************************************************/
 
@@ -2850,28 +2794,12 @@
   \********************************************************************/
 
 /*!********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
-  \********************************************************************/
-
-/*!********************************************************************!*\
   !*** ./src/layout/connection/MuteableManhattanConnectionRouter.js ***!
   \********************************************************************/
 
 /*!********************************************************************!*\
   !*** ./src/policy/figure/RoundRectangleSelectionFeedbackPolicy.js ***!
   \********************************************************************/
-
-/*!*********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
-  \*********************************************************************/
-
-/*!**********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
-  \**********************************************************************/
-
-/*!***********************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/css/contextmenu.css ***!
-  \***********************************************************************/
 
 /*!***********************************************************************!*\
   !*** ./src/layout/connection/InteractiveManhattanConnectionRouter.js ***!
@@ -2880,11 +2808,3 @@
 /*!************************************************************************!*\
   !*** ./node_modules/raw-loader/index.js!./src/lib/pathfinding.exec.js ***!
   \************************************************************************/
-
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-
-/*!**********************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
-  \**********************************************************************************/
